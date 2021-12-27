@@ -1,0 +1,15 @@
+﻿@model RentersLife.Models.Profile;
+
+<form asp-action="Login">
+    <table>
+        <tr>
+            <td> <label asp-for="UserName">user name:<sup>*</sup></label></td>
+            <td><input type="text" asp-for="UserName"></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Password">password:<sup>*</sup></label></td>
+            <td> <input type="text" asp-for="Password"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Save">
+</form>
