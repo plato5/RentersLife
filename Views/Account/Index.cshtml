@@ -3,9 +3,9 @@
 <div class="back">
     <div class="div-center">
         <div class="content">
-            <h3>Login</h3>
+            <h3>Register</h3>
             <hr />
-              <form asp-action="Login">
+              <form asp-action="Register">
                   <div class="form-group">                    
                     <label asp-for="UserName">User Name:</label>
                     <input class="form-control" type="text" placeholder="User Name" asp-for="UserName">
@@ -14,9 +14,12 @@
                       <label asp-for="Password">Password:</label>
                       <input class="form-control" type="text" placeholder="Password" asp-for="Password">
                   </div>
-                  <input type="submit" class="btn btn-primary" value="Login">
+                 <div class="form-group">                    
+                    <label asp-for="Email">email:</label>
+                    <input class="form-control" type="text" placeholder="Email" asp-for="Email">
+                  </div>
+                  <input type="submit" class="btn btn-primary" value="Register">
               </form>
-        </div>
-        <a asp-controller="Account" asp-action="Index">sign up</a>
+        </div>       
     </div>
 </div>

@@ -1,34 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RentersLife.Models;
 using System.Diagnostics;
 
-
 namespace RentersLife.Controllers
 {
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
+    public class AccountController : Controller
+    {      
+        public ActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Login([Bind("UserName, Password")] ProfileViewModel profile)
+        public IActionResult Register([Bind("UserName, Password, Email")] ProfileViewModel profile)
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Error", "Account");
             }
 
             return View(profile);
-        }       
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
