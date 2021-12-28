@@ -1,20 +1,33 @@
 ﻿body {
-    background-color: black;
+    background-color: #000;
 }
 
-.back {
+.header {
+    /* Stick to the top */
+    position: sticky;
+    top: 0;
+    height: fit-content;
+    text-align: center;
+    padding: 2em;
+}
+
+img {
+    width: 15%;
+    height: 15%;
+}
+
+.div-back {
     background: #000;
-    width: 100%;
-    position: absolute;
+    width: 100%;  
     top: 0;
     bottom: 0;
 }
 
+
 .div-center {
     width: 400px;
     height: 400px;
-    background-color: #fff;
-    position: absolute;
+    background-color: #fff;   
     left: 0;
     right: 0;
     top: 0;

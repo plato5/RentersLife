@@ -7,10 +7,17 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body> 
+<body>
     <div>
-        @RenderBody()
-    </div>   
+        <header class="header">
+            <img src="images/renters-life.png" />
+        </header>
+        <main>
+            <div class="div-back">
+                @RenderBody()
+            </div>
+        </main>
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
