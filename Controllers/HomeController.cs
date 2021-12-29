@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Logging;
 using RentersLife.Models;
 using System.Diagnostics;
-
+using System.Text;
+using Microsoft.Data.SqlClient;
+using System;
 
 namespace RentersLife.Controllers
 {
@@ -24,7 +26,39 @@ namespace RentersLife.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Error", "Home");
+                try
+                {
+                    SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+                    builder.DataSource = "renterslifeserver.database.windows.net";
+                    builder.UserID = "plato5";
+                    builder.Password = "Lewallen1971";
+                    builder.InitialCatalog = "RentersLifeDb";
+
+                    using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                    {
+                        string sql = @"select * from Profile";
+                        using (SqlCommand command = new SqlCommand(sql, connection))
+                        {
+                            connection.Open();
+                            using (SqlDataReader reader = command.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    Console.WriteLine("{0}, {1}", reader["UserName"], reader["Email"]);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+
+
+                return RedirectToAction("Index", "Account");
             }
 
             return View(profile);
