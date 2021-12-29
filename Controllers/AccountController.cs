@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RentersLife.Models;
+using RentersLife.ViewModels;
 using System.Diagnostics;
 
 namespace RentersLife.Controllers
@@ -12,7 +12,7 @@ namespace RentersLife.Controllers
             return View();
         }
 
-        public IActionResult Register([Bind("UserName, Password, Email")] ProfileViewModel profile)
+        public IActionResult Register([Bind("UserName, Password, Email")] AccountViewModel profile)
         {
             if (ModelState.IsValid)
             {

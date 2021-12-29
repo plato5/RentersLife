@@ -1,6 +1,6 @@
-﻿namespace RentersLife.Models
+﻿namespace RentersLife.ViewModels
 {
-    public class ProfileViewModel
+    public class AccountViewModel
     {      
         public int Id { get; set; }
         public string UserName { get; set; }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RentersLife.Models;
+using RentersLife.ViewModels;
 using System.Diagnostics;
-using System.Text;
 using Microsoft.Data.SqlClient;
 using System;
 
@@ -22,7 +21,7 @@ namespace RentersLife.Controllers
             return View();
         }
 
-        public IActionResult Login([Bind("UserName, Password")] ProfileViewModel profile)
+        public IActionResult Login([Bind("UserName, Password")] AccountViewModel profile)
         {
             if (ModelState.IsValid)
             {
