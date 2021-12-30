@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace RentersLife.Controllers
 {
-    public class AccountController : Controller
+    public class RegisterController : Controller
     {      
         public ActionResult Index()
         {
