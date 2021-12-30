@@ -23,7 +23,7 @@ namespace RentersLife.Controllers
             return View();
         }
 
-        public IActionResult Login([Bind("UserName, Password")] AccountViewModel account)
+        public IActionResult Login([Bind("Email, Password")] AccountViewModel account)
         {
             AccountViewModel loggedInAccount = null;
             if (ModelState.IsValid)

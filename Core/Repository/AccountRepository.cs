@@ -8,19 +8,19 @@ namespace RentersLife.Core.Repository
 {
     public interface IAccountRepository
     {
-        Account GetAccountByUserName(string userName);
+        Account GetAccountByEmail(string email);
     }
 
     public class AccountRepository : IAccountRepository
     {
-        public Account GetAccountByUserName(string userName)
+        public Account GetAccountByEmail(string email)
         {
             Account account = new Account();           
             using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
             {
                 connection.Open();
-                account = connection.Query<Account>(@"SELCT * FROM Accounts WHERE UserName = @UserName", 
-                    new { UserName = userName }).FirstOrDefault();
+                account = connection.Query<Account>(@"SELCT * FROM Accounts WHERE Email = @Email", 
+                    new { Email = email }).FirstOrDefault();
 
             }
 

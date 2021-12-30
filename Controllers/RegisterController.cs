@@ -12,14 +12,14 @@ namespace RentersLife.Controllers
             return View();
         }
 
-        public IActionResult Register([Bind("UserName, Password, Email")] AccountViewModel profile)
+        public IActionResult Register([Bind("Password, Email")] AccountViewModel account)
         {
             if (ModelState.IsValid)
             {
                 return RedirectToAction("Error", "Account");
             }
 
-            return View(profile);
+            return View(account);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

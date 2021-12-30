@@ -19,7 +19,7 @@ namespace RentersLife.Core.Services
 
         public AccountViewModel ValidateAccount(AccountViewModel account)
         {
-            var acnt = _accountRepository.GetAccountByUserName(account.UserName);
+            var acnt = _accountRepository.GetAccountByEmail(account.Email);
 
             // password decryption
             // check for valid password
@@ -27,8 +27,7 @@ namespace RentersLife.Core.Services
             // TODO: Auto Mapper is next
             var acntView = new AccountViewModel
             {
-                Id = acnt.Id,
-                UserName = acnt.UserName,
+                Id = acnt.Id,               
                 Password = acnt.Password,
                 Email = acnt.Email
             };
