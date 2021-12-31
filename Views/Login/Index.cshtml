@@ -1,0 +1,20 @@
+﻿@model RentersLife.ViewModels.LoginViewModel;
+
+<div class="div-center">
+    <div class="content">
+        <h3>Login</h3>
+        <hr />
+        <form asp-action="Login">
+            <div class="form-group">
+                <label asp-for="Email">Email:</label>
+                <input class="form-control" type="text" placeholder="Email" asp-for="Email">
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password:</label>
+                <input class="form-control" type="text" placeholder="Password" asp-for="Password">
+            </div>
+            <input type="submit" class="btn btn-dark" value="Login">
+        </form>
+    </div>
+    <a asp-controller="Register" asp-action="Index">sign up</a>
+</div>
