@@ -2,6 +2,7 @@
 using RentersLife.Core.Models;
 using RentersLife.Core.Repository;
 using RentersLife.ViewModels;
+using System;
 using BC = BCrypt.Net.BCrypt;
 
 namespace RentersLife.Core.Services
@@ -25,25 +26,51 @@ namespace RentersLife.Core.Services
 
         public AccountViewModel Register(RegistrationViewModel registrationView)
         {
-            Account newAccount = _mapper.Map<Account>(registrationView);
-            newAccount.Password = BC.HashPassword(registrationView.Password);
+            AccountViewModel accountView = null;
 
-            var account = _accountRepository.CreateAccount(newAccount);
+            try
+            {
+                Account newAccount = _mapper.Map<Account>(registrationView);
+                newAccount.Password = BC.HashPassword(registrationView.Password);
 
-            var accountView = _mapper.Map<AccountViewModel>(account);
+                var account = _accountRepository.CreateAccount(newAccount);
+                accountView = _mapper.Map<AccountViewModel>(account);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+
             return accountView;
         }
 
         public AccountViewModel Authenicate(LoginViewModel loginView)
         {
-            var account = _accountRepository.GetAccountByEmail(loginView.Email);
+            AccountViewModel accountView = null;
 
-            if (account == null)
-                return null;
-            else if (!BC.Verify(loginView.Password, account.Password))
-                return null;
+            try
+            {
+                var account = _accountRepository.GetAccountByEmail(loginView.Email);
 
-            var accountView = _mapper.Map<AccountViewModel>(account);                       
+                if (account == null)
+                    return null;
+                else if (!BC.Verify(loginView.Password, account.Password))
+                    return null;
+
+                accountView = _mapper.Map<AccountViewModel>(account);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
             return accountView;
         }
