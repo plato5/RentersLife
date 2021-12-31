@@ -2,14 +2,15 @@
 using RentersLife.Core.Models;
 using RentersLife.Core.Repository;
 using RentersLife.ViewModels;
+using BC = BCrypt.Net.BCrypt;
 
 namespace RentersLife.Core.Services
 {
 
     public interface IAccountService
     {
-        AccountViewModel ValidateAccount(LoginViewModel account);
-        AccountViewModel CreateAccount(RegistrationViewModel registrationView);
+        AccountViewModel Authenicate(LoginViewModel account);
+        AccountViewModel Register(RegistrationViewModel registrationView);
     }
 
     public class AccountService : IAccountService
@@ -22,21 +23,25 @@ namespace RentersLife.Core.Services
             _mapper = mapper;
         }
 
-        public AccountViewModel CreateAccount(RegistrationViewModel registrationView)
+        public AccountViewModel Register(RegistrationViewModel registrationView)
         {
-            Account newAcount = _mapper.Map<Account>(registrationView);
-            var account = _accountRepository.CreateAccount(newAcount);
+            Account newAccount = _mapper.Map<Account>(registrationView);
+            newAccount.Password = BC.HashPassword(registrationView.Password);
+
+            var account = _accountRepository.CreateAccount(newAccount);
 
             var accountView = _mapper.Map<AccountViewModel>(account);
             return accountView;
         }
 
-        public AccountViewModel ValidateAccount(LoginViewModel loginView)
+        public AccountViewModel Authenicate(LoginViewModel loginView)
         {
             var account = _accountRepository.GetAccountByEmail(loginView.Email);
 
-            // password decryption
-            // check for valid password
+            if (account == null)
+                return null;
+            else if (!BC.Verify(loginView.Password, account.Password))
+                return null;
 
             var accountView = _mapper.Map<AccountViewModel>(account);                       
 

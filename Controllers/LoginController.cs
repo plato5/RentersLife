@@ -29,21 +29,26 @@ namespace RentersLife.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
-                    // TODO: set up a cache for this info
-                    loggedInAccount = _accountService.ValidateAccount(accountView);
+                {                   
+                    loggedInAccount = _accountService.Authenicate(accountView);
                     if (loggedInAccount == null)
                     {
-                        // Login failed -> pass back error state
+                        // Failed to login
+                        throw new ArgumentNullException(nameof(LoginViewModel));
                     }
+
+                    // TODO: set up a cache for this info
                 }
                 catch (Exception ex)
                 {
+                    // Something went wrong in the system -> possibly failed login as well
+                    // TODO: set up custom error page for registration failure
                     return Error();
                 }
             }
             else
             {
+                // Input data was incorrect
                 return Error();
             }
           

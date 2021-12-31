@@ -26,16 +26,18 @@ namespace RentersLife.Controllers
             if (ModelState.IsValid)
             {
                try
-                {
-                    // TODO: set up a cache for this info
-                    var loggedInAccount = _accountService.CreateAccount(accountView);
+                {                   
+                    var loggedInAccount = _accountService.Register(accountView);
                     if (loggedInAccount == null)
-                    {
-                        // Login failed -> pass back error state
+                    {                        
+                        throw new ArgumentNullException(nameof(RegistrationViewModel));
                     }
+
+                    // TODO: set up a cache for this info
                 }
                 catch (Exception ex)
                 {
+                    // TODO: set up custom error page for registration failure
                     return Error();
                 }
             }
