@@ -22,7 +22,7 @@ namespace RentersLife.Controllers
         }
 
         public IActionResult Register(RegistrationViewModel accountView)
-        {
+        {           
             if (ModelState.IsValid)
             {
                try
@@ -35,24 +35,38 @@ namespace RentersLife.Controllers
 
                     // TODO: set up a cache for this info
                 }
+                catch (InvalidOperationException ex)
+                {
+                    var errorViewModel = SetErrorMessage(ex.Message);
+                    return Error(errorViewModel);
+                }
                 catch (Exception ex)
                 {
-                    // TODO: set up custom error page for registration failure
-                    return Error();
+                    var errorViewModel = SetErrorMessage(ex.Message);
+                    return Error(errorViewModel);                    
                 }
             }
             else
             {
-                return Error();
+                var errorViewModel = SetErrorMessage("Invalid model passed in.");
+                return RedirectToAction("Error", "Register", new { errorViewModel });
             }
 
             return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(ErrorViewModel errorViewModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("Error", errorViewModel);
+        }
+
+        private ErrorViewModel SetErrorMessage(string message)
+        {
+            ErrorViewModel errorViewModel = new ErrorViewModel();
+            errorViewModel.ErrorMessage = message;
+
+            return errorViewModel;
         }
     }
 }

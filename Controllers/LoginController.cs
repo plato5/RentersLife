@@ -32,33 +32,44 @@ namespace RentersLife.Controllers
                 {                   
                     loggedInAccount = _accountService.Authenicate(accountView);
                     if (loggedInAccount == null)
-                    {
-                        // Failed to login
+                    {                       
                         throw new ArgumentNullException(nameof(LoginViewModel));
                     }
 
                     // TODO: set up a cache for this info
                 }
+                catch (InvalidOperationException ex)
+                {
+                    var errorViewModel = SetErrorMessage(ex.Message);
+                    return Error(errorViewModel);
+                }
                 catch (Exception ex)
                 {
-                    // Something went wrong in the system -> possibly failed login as well
-                    // TODO: set up custom error page for registration failure
-                    return Error();
+                    var errorViewModel = SetErrorMessage(ex.Message);
+                    return Error(errorViewModel);
                 }
             }
             else
             {
-                // Input data was incorrect
-                return Error();
+                var errorViewModel = SetErrorMessage("Invalid model passed in.");
+                return RedirectToAction("Error", "Register", new { errorViewModel });
             }
-          
+
             return RedirectToAction("Index", "Home");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public IActionResult Error(ErrorViewModel errorViewModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View("Error", errorViewModel);
+        }
+
+        private ErrorViewModel SetErrorMessage(string message)
+        {
+            ErrorViewModel errorViewModel = new ErrorViewModel();
+            errorViewModel.ErrorMessage = message;
+
+            return errorViewModel;
         }
     }
 }
