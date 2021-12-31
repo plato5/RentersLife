@@ -9,17 +9,38 @@ namespace RentersLife.Core.Repository
     public interface IAccountRepository
     {
         Account GetAccountByEmail(string email);
+        Account CreateAccount(Account account);
     }
 
     public class AccountRepository : IAccountRepository
     {
+        public Account CreateAccount(Account account)
+        {
+            Account newAccount = new Account();
+            using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
+            {
+                connection.Open();
+                connection.Execute(@"INSERT INTO Account(Password, Email, FirstName, MiddleName, LastName)
+                        VALUES(@Password, @Email, @FirstName, @MiddleName, @LastName)",
+                        new { 
+                            Password = account.Password,
+                            Email = account.Email,
+                            FirstName = account.FirstName,
+                            MiddleName = account.MiddleName,
+                            LastName = account.LastName
+                        });
+            }
+
+            return GetAccountByEmail(account.Email);
+        }
+
         public Account GetAccountByEmail(string email)
         {
             Account account = new Account();           
             using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
             {
                 connection.Open();
-                account = connection.Query<Account>(@"SELCT * FROM Accounts WHERE Email = @Email", 
+                account = connection.Query<Account>(@"SELECT * FROM Account WHERE Email = @Email", 
                     new { Email = email }).FirstOrDefault();
 
             }

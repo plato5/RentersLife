@@ -23,14 +23,15 @@ namespace RentersLife.Controllers
             return View();
         }
 
-        public IActionResult Login([Bind("Email, Password")] AccountViewModel account)
+        public IActionResult Login(LoginViewModel accountView)
         {
             AccountViewModel loggedInAccount = null;
             if (ModelState.IsValid)
             {
                 try
                 {
-                    loggedInAccount = _accountService.ValidateAccount(account);
+                    // TODO: set up a cache for this info
+                    loggedInAccount = _accountService.ValidateAccount(accountView);
                     if (loggedInAccount == null)
                     {
                         // Login failed -> pass back error state

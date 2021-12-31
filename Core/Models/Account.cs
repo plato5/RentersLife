@@ -11,7 +11,7 @@ namespace RentersLife.Core.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
 
-        public List<Address> Addresses { get; set; }
+      //  public Address Address { get; set; }
         
     }
 }
