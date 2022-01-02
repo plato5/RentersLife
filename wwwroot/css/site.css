@@ -45,3 +45,7 @@ div.content {
     display: table-cell;
     vertical-align: middle;
 }
+
+form .error {
+    color: #ff0000;
+}

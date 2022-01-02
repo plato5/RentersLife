@@ -32,7 +32,8 @@ namespace RentersLife.Controllers
                 {                   
                     loggedInAccount = _accountService.Authenicate(accountView);
                     if (loggedInAccount == null)
-                    {                       
+                    {
+                        var errorViewModel = SetErrorMessage("Login failed");
                         throw new ArgumentNullException(nameof(LoginViewModel));
                     }
 

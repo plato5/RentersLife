@@ -4,22 +4,49 @@
     <div class="content">
         <h3>Login</h3>
         <hr />
-        <form asp-action="Login">
+        <form asp-action="Login" name="userLoginForm">
             <div class="form-group">
                 <label asp-for="Email">Email:</label>
-                <input id="emailAddress" class="form-control" type="email" placeholder="Email" asp-for="Email">
+                <input id="Email" name="Email" class="form-control" type="email" placeholder="Email" asp-for="Email">
             </div>
             <div class="form-group">
                 <label asp-for="Password">Password:</label>
-                <input class="form-control" type="text" placeholder="Password" asp-for="Password">
+                <input id="Password" name="Password" class="form-control" type="text" placeholder="Password" asp-for="Password">
             </div>
-            <input type="submit" class="btn btn-dark" value="Login">
+            <input id="userLogin" type="submit" class="btn btn-dark" value="Login">
         </form>
     </div>
     <a asp-controller="Register" asp-action="Index">sign up</a>
 </div>
 
-<script>
-   // going to use vanilla js per page to get started
+@section scripts {    
+    <script>    
+        $(document).ready(function() {
+          $("form[name='userLoginForm']").validate({
+              rules: {                                 
+                  Email: {
+                      required: true,
+                      email: true
+                  },
+                  Password: {
+                      required: true,
+                      minlength: 5
+                  }
+              },
+              messages: {
+                  Password: {
+                      required: "Please provide a password",
+                      minlength: "Password must be at least 5 characters long"
+                  },
+                  Email: "Please enter a valid email address"
+              },
+              submitHandler: function (form) {
+                  form.submit();
+              }
 
-</script>
+          });
+
+        });
+
+    </script>
+}
