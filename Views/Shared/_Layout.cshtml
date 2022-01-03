@@ -4,22 +4,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] RentersLife</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />    
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div>
-        <header class="header">
-            <img src="images/renters-life.png" />
-        </header>
-        <main>
-            <div class="div-back">
-                @RenderBody()
-            </div>
-        </main>
+    <div class="container">
+        <div class="logo">
+            <img src="images/renters-life.png" alt="" width="130" />
+        </div>
+        <nav>
+            <ul>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">About</a></li>
+                <li><a asp-controller="Login" asp-action="Index">Login</a></li>
+                <li><a asp-controller="Register" asp-action="Index">Register</a></li>               
+            </ul>
+        </nav>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script> 
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+    <hr />
+
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

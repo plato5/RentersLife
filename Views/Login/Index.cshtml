@@ -1,8 +1,11 @@
 ﻿@model RentersLife.ViewModels.LoginViewModel;
 
-<div class="div-center">
+<div class="center">
     <div class="content">
-        <h3>Login</h3>
+        <div>
+            <h3>Login</h3>
+             <a asp-controller="Register" asp-action="Index">sign up</a>
+         </div>
         <hr />
         <form asp-action="Login" name="userLoginForm">
             <div class="form-group">
@@ -13,10 +16,9 @@
                 <label asp-for="Password">Password:</label>
                 <input id="Password" name="Password" class="form-control" type="text" placeholder="Password" asp-for="Password">
             </div>
-            <input id="userLogin" type="submit" class="btn btn-dark" value="Login">
+            <input id="userLogin" type="submit" class="btn btn-primary btn-outline-light" value="Login">
         </form>
-    </div>
-    <a asp-controller="Register" asp-action="Index">sign up</a>
+    </div>  
 </div>
 
 @section scripts {    
