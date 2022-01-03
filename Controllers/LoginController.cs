@@ -33,8 +33,9 @@ namespace RentersLife.Controllers
                     loggedInAccount = _accountService.Authenicate(accountView);
                     if (loggedInAccount == null)
                     {
-                        var errorViewModel = SetErrorMessage("Invalid email/password");
-                        return Error(errorViewModel);
+                       
+                        var errorViewModel = SetErrorMessage("Invalid email/password try again.");
+                        return RedirectToAction("Index", "Error", errorViewModel);
                     }
 
                     // TODO: set up a cache for this info
@@ -42,33 +43,28 @@ namespace RentersLife.Controllers
                 catch (InvalidOperationException ex)
                 {
                     var errorViewModel = SetErrorMessage(ex.Message);
-                    return Error(errorViewModel);
+                    return RedirectToAction("Index", "Error", errorViewModel);
                 }
                 catch (Exception ex)
                 {
                     var errorViewModel = SetErrorMessage(ex.Message);
-                    return Error(errorViewModel);
+                    return RedirectToAction("Index", "Error", errorViewModel);
                 }
             }
             else
             {
-                var errorViewModel = SetErrorMessage("Invalid email/password");
-                return Error(errorViewModel);
+                var errorViewModel = SetErrorMessage("Invalid email/password try again.");
+                return RedirectToAction("Index", "Error", errorViewModel);
             }
 
             return RedirectToAction("Index", "Home");
         }
-
-     
-        public IActionResult Error(ErrorViewModel errorViewModel)
-        {
-            return View("Error", errorViewModel);
-        }
+           
 
         private ErrorViewModel SetErrorMessage(string message)
         {
             ErrorViewModel errorViewModel = new ErrorViewModel();
-            errorViewModel.ErrorMessage = message;
+            errorViewModel.LoginErrorMessage = message;
 
             return errorViewModel;
         }

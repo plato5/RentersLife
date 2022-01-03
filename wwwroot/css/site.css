@@ -1,51 +1,69 @@
-﻿body {
-    background-color: #000;
+﻿* {
+    transition: all 0.3s ease-in-out;
 }
 
-.header {
-    /* Stick to the top */
-    position: sticky;
-    top: 0;
-    height: fit-content;
-    text-align: center;
-    padding: 2em;
+body {
+    background-color: black;
 }
 
-img {
-    width: 15%;
-    height: 15%;
-}
-
-.div-back {
-    background: #000;
-    width: 100%;  
-    top: 0;
-    bottom: 0;
-}
-
-
-.div-center {
-    width: 400px;
-    height: 400px;
-    background-color: #fff;   
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%;
+.container {
+    clear: both;
     overflow: auto;
-    padding: 1em 2em;
-    border-bottom: 2px solid #ccc;
-    display: table;
 }
 
-div.content {
-    display: table-cell;
-    vertical-align: middle;
+nav {
+    float: right;
+}
+
+.logo img {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 5px;   
+}
+
+ul li {
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    font-family: raleway;    
+}
+
+a {
+    color: white;   
+}
+
+a:hover {
+    color: orange;
+}
+
+
+/* forms */
+.form-group {
+    width: 200%;
 }
 
 form .error {
     color: #ff0000;
+}
+
+.form-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    height: 80%; 
+    width: 90%;
+}
+
+
+.form-content {
+    color: white; 
+}
+
+
+.center {
+    margin: auto;
+    width: 60%;   
+    padding: 80px;
+    color: white;
 }

@@ -8,6 +8,7 @@ namespace RentersLife.ViewModels
 
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
-        public string ErrorMessage { get; set; }
+        public string LoginErrorMessage { get; set; }
+        public string RegistationErrorMessage { get; set; }
     }
 }
