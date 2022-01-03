@@ -16,7 +16,10 @@ nav {
 }
 
 .logo img {
-    float: left;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 5px;   
 }
 
 ul li {
@@ -44,15 +47,23 @@ form .error {
     color: #ff0000;
 }
 
-.center {
+.form-center {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;   
     height: 80%; 
     width: 90%;
 }
 
 
-.content {
+.form-content {
+    color: white; 
+}
+
+
+.center {
+    margin: auto;
+    width: 60%;   
+    padding: 80px;
     color: white;
 }
