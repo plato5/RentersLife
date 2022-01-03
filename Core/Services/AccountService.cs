@@ -31,7 +31,7 @@ namespace RentersLife.Core.Services
             try
             {
                 Account newAccount = _mapper.Map<Account>(registrationView);
-                newAccount.Password = BC.HashPassword(registrationView.Password);
+                newAccount.PasswordHash = BC.HashPassword(registrationView.Password);
 
                 var account = _accountRepository.CreateAccount(newAccount);
                 accountView = _mapper.Map<AccountViewModel>(account);
@@ -58,7 +58,7 @@ namespace RentersLife.Core.Services
 
                 if (account == null)
                     return null;
-                else if (!BC.Verify(loginView.Password, account.Password))
+                else if (!BC.Verify(loginView.Password, account.PasswordHash))
                     return null;
 
                 accountView = _mapper.Map<AccountViewModel>(account);

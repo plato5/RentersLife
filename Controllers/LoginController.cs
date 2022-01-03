@@ -32,8 +32,9 @@ namespace RentersLife.Controllers
                 {                   
                     loggedInAccount = _accountService.Authenicate(accountView);
                     if (loggedInAccount == null)
-                    {                       
-                        throw new ArgumentNullException(nameof(LoginViewModel));
+                    {
+                        var errorViewModel = SetErrorMessage("Invalid email/password");
+                        return Error(errorViewModel);
                     }
 
                     // TODO: set up a cache for this info
@@ -51,14 +52,14 @@ namespace RentersLife.Controllers
             }
             else
             {
-                var errorViewModel = SetErrorMessage("Invalid model passed in.");
-                return RedirectToAction("Error", "Register", new { errorViewModel });
+                var errorViewModel = SetErrorMessage("Invalid email/password");
+                return Error(errorViewModel);
             }
 
             return RedirectToAction("Index", "Home");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+     
         public IActionResult Error(ErrorViewModel errorViewModel)
         {
             return View("Error", errorViewModel);

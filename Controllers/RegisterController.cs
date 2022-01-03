@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RentersLife.Core.Services;
 using RentersLife.ViewModels;
 using System;
-using System.Diagnostics;
 
 namespace RentersLife.Controllers
 {
@@ -29,8 +27,9 @@ namespace RentersLife.Controllers
                 {                   
                     var loggedInAccount = _accountService.Register(accountView);
                     if (loggedInAccount == null)
-                    {                        
-                        throw new ArgumentNullException(nameof(RegistrationViewModel));
+                    {
+                        var errorViewModel = SetErrorMessage("Invalid email/password");
+                        return Error(errorViewModel);
                     }
 
                     // TODO: set up a cache for this info
@@ -48,14 +47,13 @@ namespace RentersLife.Controllers
             }
             else
             {
-                var errorViewModel = SetErrorMessage("Invalid model passed in.");
-                return RedirectToAction("Error", "Register", new { errorViewModel });
+                var errorViewModel = SetErrorMessage("Invalid email/password");
+                return Error(errorViewModel);
             }
 
             return RedirectToAction("Index", "Home");
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+     
         public IActionResult Error(ErrorViewModel errorViewModel)
         {
             return View("Error", errorViewModel);
