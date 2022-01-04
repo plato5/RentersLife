@@ -11,16 +11,17 @@ namespace RentersLife.Controllers
     {
         private readonly ILogger<LoginController> _logger;
         private readonly IAccountService _accountService;
+        private readonly string _controllerName;
 
         public LoginController(ILogger<LoginController> logger, IAccountService accountService)
         {
             _logger = logger;
             _accountService = accountService;
+            _controllerName = "Login";
         }
 
         public IActionResult Index()
-        {
-            ViewHelper.LoginPages = true;
+        {          
             return View();
         }
 
@@ -35,7 +36,7 @@ namespace RentersLife.Controllers
                     if (loggedInAccount == null)
                     {
                        
-                        var errorViewModel = SetErrorMessage("Invalid email/password try again.");
+                        var errorViewModel = SetErrorMessage("Invalid email/password try again.", _controllerName);
                         return RedirectToAction("Index", "Error", errorViewModel);
                     }
 
@@ -44,18 +45,18 @@ namespace RentersLife.Controllers
                 }
                 catch (InvalidOperationException ex)
                 {
-                    var errorViewModel = SetErrorMessage(ex.Message);
+                    var errorViewModel = SetErrorMessage(ex.Message, _controllerName);
                     return RedirectToAction("Index", "Error", errorViewModel);
                 }
                 catch (Exception ex)
                 {
-                    var errorViewModel = SetErrorMessage(ex.Message);
+                    var errorViewModel = SetErrorMessage(ex.Message, _controllerName);
                     return RedirectToAction("Index", "Error", errorViewModel);
                 }
             }
             else
             {
-                var errorViewModel = SetErrorMessage("Invalid email/password try again.");
+                var errorViewModel = SetErrorMessage("Invalid email/password try again.", _controllerName);
                 return RedirectToAction("Index", "Error", errorViewModel);
             }
 
