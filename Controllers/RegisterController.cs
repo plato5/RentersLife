@@ -5,7 +5,7 @@ using System;
 
 namespace RentersLife.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseController
     {
         private readonly IAccountService _accountService;
 
@@ -16,6 +16,7 @@ namespace RentersLife.Controllers
 
         public ActionResult Index()
         {
+            ViewHelper.LoginPages = true;
             return View();
         }
 
@@ -58,13 +59,6 @@ namespace RentersLife.Controllers
         {
             return View("Error", errorViewModel);
         }
-
-        private ErrorViewModel SetErrorMessage(string message)
-        {
-            ErrorViewModel errorViewModel = new ErrorViewModel();
-            errorViewModel.RegistationErrorMessage = message;
-
-            return errorViewModel;
-        }
+       
     }
 }

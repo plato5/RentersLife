@@ -1,37 +1,34 @@
 ﻿@model RentersLife.ViewModels.ErrorViewModel
 
-<section class="vh-100">
-    <div class="container py-5 h-100">
-        <div class="row d-flex align-items-center justify-content-center h-100">
-            <div class="col-md-8 col-lg-7 col-xl-6">
-                <img src="images/renters-life.png" class="img-fluid" alt="logo">
-            </div>
-            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <div>
-                    @if (!string.IsNullOrWhiteSpace(Model.LoginErrorMessage))
-                    {
-                        <p>
-                            <h4>Error: @Model.LoginErrorMessage</h4>
-                            <div><a asp-controller="Login" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Login"></a></div>
-                        </p>
-                    }
-                    else if (!string.IsNullOrWhiteSpace(Model.RegistationErrorMessage))
-                    {
-                        <p>
-                            <h4>Error: @Model.RegistationErrorMessage </h4>
-                            <div><a asp-controller="Register" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Register"></a></div>
-                        </p>
-                    }
-                    else
-                    {
-                        <h4 class="text-danger">Error: </h4>
-                        <h4 class="text-danger">Occurred while processing your request.</h4>
-                    }
-                </div>
-            </div>
+
+<div class="row d-flex align-items-center justify-content-center h-100">
+    <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="images/renters-life.png" class="img-fluid" alt="logo">
+    </div>
+    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+        <div>
+            @if (!string.IsNullOrWhiteSpace(Model.LoginErrorMessage))
+            {
+                <p>
+                    <h4>Error: @Model.LoginErrorMessage</h4>
+                    <div><a asp-controller="Login" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Login"></a></div>
+                </p>
+            }
+            else if (!string.IsNullOrWhiteSpace(Model.RegistationErrorMessage))
+            {
+                <p>
+                    <h4>Error: @Model.RegistationErrorMessage </h4>
+                    <div><a asp-controller="Register" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Register"></a></div>
+                </p>
+            }
+            else
+            {
+                <h4 class="text-danger">Error: </h4>
+                <h4 class="text-danger">Occurred while processing your request.</h4>
+            }
         </div>
     </div>
-</section>
+</div>
 
 
 
