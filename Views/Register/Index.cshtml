@@ -1,72 +1,98 @@
 ﻿@model RentersLife.ViewModels.RegistrationViewModel;
 
-<div class="form-center">
-    <div class="form-content">
-        <h3>Register</h3>
-        <hr />
-        <form asp-action="Register" name="userRegistrationForm">
-            <div class="form-group">
-                <label asp-for="Email">Email:</label>
-                <input id="Email" name="Email" class="form-control" type="text" placeholder="Email" asp-for="Email">
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="images/renters-life.png" class="img-fluid" alt="logo">
             </div>
-            <div class="form-group">
-                <label asp-for="Password">Password:</label>
-                <input id="Password" name="Password" class="form-control" type="text" placeholder="Password" asp-for="Password">
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form asp-action="Register" name="userRegistrationForm">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" asp-for="Email">Email:</label>
+                        <input asp-for="Email" id="Email" name="Email" type="email" class="form-control form-control-lg" placeholder="Email" />
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" asp-for="Password">Password:</label>
+                        <input id="Password" name="Password" type="password" class="form-control form-control-lg" placeholder="Password" asp-for="Password" />
+                    </div>
+
+                    <!-- Confirm Password-->
+                    <div class="form-outline mb-4">
+                        <label class="form-label">Confirm Password:</label>
+                        <input id="ConfirmPassword" name="ConfirmPassword" type="password" class="form-control form-control-lg" placeholder="Confirm Password" />
+                    </div>
+
+                    <!--First Name-->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" asp-for="FirstName">First Name:</label>
+                        <input id="FirstName" name="FirstName" type="text" class="form-control form-control-lg" placeholder="First Name" asp-for="FirstName" />
+                    </div>
+
+                    <!--Last Name-->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" asp-for="LastName">Last Name:</label>
+                        <input id="LastName" name="LastName" type="text" class="form-control form-control-lg" placeholder="Last Name" asp-for="LastName" />
+                    </div>
+
+                    <div class="d-flex justify-content-around align-items-center mb-4">
+                        <a asp-controller="Login" asp-action="Index">Already a member, sign in.</a>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button id="userRegister" type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+
+                </form>
             </div>
-             <div class="form-group">
-                <label asp-for="FirstName">First Name:</label>
-                <input id="FirstName" name="FirstName" class="form-control" type="text" placeholder="First Name" asp-for="FirstName">
-            </div>
-            <div class="form-group">
-                <label asp-for="MiddleName">Middle Name:</label>
-                <input class="form-control" type="text" placeholder="Middle Name" asp-for="MiddleName">
-            </div>
-             <div class="form-group">
-                <label asp-for="LastName">Last Name:</label>
-                <input id="LastName" name="LastName" class="form-control" type="text" placeholder="Last Name" asp-for="LastName">
-            </div>
-            <input type="submit" class="btn btn-primary btn-outline-light" value="Register">
-        </form>
+        </div>
     </div>
-</div>
+</section>
 
 
-@section scripts {    
-    <script>    
-        $(document).ready(function() {
-          $("form[name='userRegistrationForm']").validate({
-              rules: {                                 
-                  Email: {
-                      required: true,
-                      email: true
-                  },
-                  Password: {
-                      required: true,
-                      minlength: 5
-                  },
-                  FirstName: {
-                      required: true
-                  },
-                  LastName: {
-                      required: true
-                  }
+@section scripts {
+<script>
+
+    $(document).ready(function() {
+      $("form[name='userRegistrationForm']").validate({
+          rules: {
+              Email: {
+                  required: true,
+                  email: true
               },
-              messages: {
-                  Password: {
-                      required: "Please provide a password",
-                      minlength: "Password must be at least 5 characters long"
-                  },
-                  Email: "Please enter a valid email address",
-                  FirstName: "Please provide a first name",
-                  LastName: "Please provide a last name"
+              Password: {
+                  required: true,
+                  minlength: 5
               },
-              submitHandler: function (form) {
-                  form.submit();
+              ConfirmPassword: {
+                  minlength: 5,
+                  equalTo: "#Password"
+              },
+              FirstName: {
+                  required: true
+              },
+              LastName: {
+                  required: true
               }
+          },
+          messages: {
+              Password: {
+                  required: "Please provide a password",
+                  minlength: "Password must be at least 5 characters long"
+              },
+              Email: "Please enter a valid email address",
+              FirstName: "Please provide a first name",
+              LastName: "Please provide a last name"
+          },
+          submitHandler: function (form) {
+              form.submit();
+          }
 
-          });
+      });
 
-        });
+    });
 
-    </script>
+</script>
 }

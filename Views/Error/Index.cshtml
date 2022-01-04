@@ -1,25 +1,39 @@
 ﻿@model RentersLife.ViewModels.ErrorViewModel
-<div class="center">
-    <div class="content">
-        @if (!string.IsNullOrWhiteSpace(Model.LoginErrorMessage))
-        {
-            <p>
-                <h3>Error: @Model.LoginErrorMessage</h3>
-                <div><a asp-controller="Login" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Login"></a></div>
-            </p>
-        }
-        else if (!string.IsNullOrWhiteSpace(Model.RegistationErrorMessage))
-        {
-             <p>
-                <h3>Error: @Model.RegistationErrorMessage </h3>                
-                <div><a asp-controller="Register" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Register"></a></div>
-            </p>
-        }
-        else
-        {
-            <h2 class="text-danger">Error: </h2>
-            <h3 class="text-danger">Occurred while processing your request.</h3>
-        }
 
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="images/renters-life.png" class="img-fluid" alt="logo">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <div>
+                    @if (!string.IsNullOrWhiteSpace(Model.LoginErrorMessage))
+                    {
+                        <p>
+                            <h4>Error: @Model.LoginErrorMessage</h4>
+                            <div><a asp-controller="Login" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Login"></a></div>
+                        </p>
+                    }
+                    else if (!string.IsNullOrWhiteSpace(Model.RegistationErrorMessage))
+                    {
+                        <p>
+                            <h4>Error: @Model.RegistationErrorMessage </h4>
+                            <div><a asp-controller="Register" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Register"></a></div>
+                        </p>
+                    }
+                    else
+                    {
+                        <h4 class="text-danger">Error: </h4>
+                        <h4 class="text-danger">Occurred while processing your request.</h4>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+
+
+
+
+

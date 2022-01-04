@@ -1,69 +1,13 @@
-﻿* {
-    transition: all 0.3s ease-in-out;
-}
-
+﻿
 body {
     background-color: black;
-}
-
-.container {
-    clear: both;
-    overflow: auto;
-}
-
-nav {
-    float: right;
-}
-
-.logo img {
-    position: fixed;
-    top: 0;
-    left: 0;
-    margin: 5px;   
-}
-
-ul li {
-    display: inline-block;
-    padding: 10px;
-    font-size: 20px;
-    font-family: raleway;    
-}
-
-a {
-    color: white;   
-}
-
-a:hover {
-    color: orange;
-}
-
-
-/* forms */
-.form-group {
-    width: 200%;
-}
-
-form .error {
-    color: #ff0000;
-}
-
-.form-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;   
-    height: 80%; 
-    width: 90%;
-}
-
-
-.form-content {
-    color: white; 
-}
-
-
-.center {
-    margin: auto;
-    width: 60%;   
-    padding: 80px;
     color: white;
+}
+
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #000;
 }
