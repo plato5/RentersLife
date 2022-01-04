@@ -8,15 +8,16 @@ namespace RentersLife.Controllers
     public class RegisterController : BaseController
     {
         private readonly IAccountService _accountService;
+        private readonly string _controllerName;
 
         public RegisterController(IAccountService accountService)
         {
             _accountService = accountService;
+            _controllerName = "Register";
         }
 
         public ActionResult Index()
-        {
-            ViewHelper.LoginPages = true;
+        {           
             return View();
         }
 
@@ -29,7 +30,7 @@ namespace RentersLife.Controllers
                     var loggedInAccount = _accountService.Register(accountView);
                     if (loggedInAccount == null)
                     {
-                        var errorViewModel = SetErrorMessage("Invalid email/password try again.");
+                        var errorViewModel = SetErrorMessage("Invalid email/password try again.", _controllerName);
                         return RedirectToAction("Index", "Error", errorViewModel);
                     }
 
@@ -37,18 +38,18 @@ namespace RentersLife.Controllers
                 }
                 catch (InvalidOperationException ex)
                 {
-                    var errorViewModel = SetErrorMessage("Invalid email / password try again.");
+                    var errorViewModel = SetErrorMessage("Invalid email / password try again.", _controllerName);
                       return RedirectToAction("Index", "Error", errorViewModel);
                 }
                 catch (Exception ex)
                 {
-                    var errorViewModel = SetErrorMessage(ex.Message);
+                    var errorViewModel = SetErrorMessage(ex.Message, _controllerName);
                     return RedirectToAction("Index", "Error", errorViewModel);
                 }
             }
             else
             {
-                var errorViewModel = SetErrorMessage("Invalid email/password try again.");
+                var errorViewModel = SetErrorMessage("Invalid email/password try again.", _controllerName);
                 return RedirectToAction("Index", "Error", errorViewModel);
             }
 

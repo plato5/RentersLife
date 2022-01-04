@@ -7,8 +7,7 @@ namespace RentersLife.Controllers
     public class HomeController : BaseController
     {       
         public IActionResult Index()
-        {
-            ViewHelper.LoginPages = false;
+        {           
             return View();
         }
 
