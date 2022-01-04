@@ -3,7 +3,7 @@ using RentersLife.ViewModels;
 
 namespace RentersLife.Controllers
 {
-    public class ErrorController : Controller
+    public class ErrorController : BaseController
     {
         public IActionResult Index(ErrorViewModel ErrorView)
         {         

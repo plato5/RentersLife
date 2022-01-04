@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace RentersLife.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         private readonly ILogger<LoginController> _logger;
         private readonly IAccountService _accountService;
@@ -20,6 +20,7 @@ namespace RentersLife.Controllers
 
         public IActionResult Index()
         {
+            ViewHelper.LoginPages = true;
             return View();
         }
 
@@ -39,6 +40,7 @@ namespace RentersLife.Controllers
                     }
 
                     // TODO: set up a cache for this info
+                   
                 }
                 catch (InvalidOperationException ex)
                 {
@@ -60,13 +62,5 @@ namespace RentersLife.Controllers
             return RedirectToAction("Index", "Home");
         }
            
-
-        private ErrorViewModel SetErrorMessage(string message)
-        {
-            ErrorViewModel errorViewModel = new ErrorViewModel();
-            errorViewModel.LoginErrorMessage = message;
-
-            return errorViewModel;
-        }
     }
 }

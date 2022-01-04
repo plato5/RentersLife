@@ -4,10 +4,11 @@ using System.Diagnostics;
 
 namespace RentersLife.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {       
         public IActionResult Index()
         {
+            ViewHelper.LoginPages = false;
             return View();
         }
 
