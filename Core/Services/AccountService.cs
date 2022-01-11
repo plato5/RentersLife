@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using RentersLife.Core.Models;
+using RentersLife.Core.Models.Types;
 using RentersLife.Core.Repository;
 using RentersLife.ViewModels;
 using System;
@@ -33,6 +34,7 @@ namespace RentersLife.Core.Services
                 Account newAccount = _mapper.Map<Account>(registrationView);
                 newAccount.PasswordHash = BC.HashPassword(registrationView.Password);
 
+                newAccount.AccountTypeId = (int)Models.Types.AccountType.Renter;
                 var account = _accountRepository.CreateAccount(newAccount);
                 accountView = _mapper.Map<AccountViewModel>(account);
             }

@@ -24,10 +24,11 @@ namespace RentersLife.Core.Repository
                 using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
                 {
                     connection.Open();
-                    connection.Execute(@"INSERT INTO Account(Password, PasswordHash, Email, FirstName, MiddleName, LastName)
-                        VALUES(@Password, @PasswordHash, @Email, @FirstName, @MiddleName, @LastName)",
+                    connection.Execute(@"INSERT INTO Account(AccountTypeId, Password, PasswordHash, Email, FirstName, MiddleName, LastName)
+                        VALUES(@AccountTypeId, @Password, @PasswordHash, @Email, @FirstName, @MiddleName, @LastName)",
                             new
                             {
+                                AccountTypeId = account.AccountTypeId,
                                 Password = account.Password,
                                 PasswordHash = account.PasswordHash,
                                 Email = account.Email,
