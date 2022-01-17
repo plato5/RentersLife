@@ -1,9 +1,12 @@
 ﻿@model RentersLife.ViewModels.ErrorViewModel
 
 <div class="row d-flex align-items-center justify-content-center h-100">
-    <div class="col-md-8 col-lg-7 col-xl-6">
-        <img src="images/renters-life.png" class="img-fluid" alt="logo">
-    </div>
+    @if (Model != null && (!string.IsNullOrWhiteSpace(Model.LoginErrorMessage) || !string.IsNullOrWhiteSpace(Model.RegistationErrorMessage)))
+    {
+        <div class="col-md-8 col-lg-7 col-xl-6">
+            <img src="images/renters-life.png" class="img-fluid" alt="logo">
+        </div>
+    }
     <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
         <div>
             @if (!string.IsNullOrWhiteSpace(Model.LoginErrorMessage))
@@ -22,8 +25,11 @@
             }
             else
             {
-                <h4 class="text-danger">Error: </h4>
-                <h4 class="text-danger">Occurred while processing your request.</h4>
+                <p>
+                    <h4 class="text-danger">Error: </h4>
+                    <h4 class="text-danger">Occurred while processing your request.</h4>
+                    <div><a asp-controller="Login" asp-action="Index"><input class="btn btn-primary btn-outline-light" value="Login"></a></div>
+                </p>
             }
         </div>
     </div>

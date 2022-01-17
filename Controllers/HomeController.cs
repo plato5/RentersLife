@@ -6,14 +6,11 @@ using System.Diagnostics;
 
 namespace RentersLife.Controllers
 {
-    [Authorize]
+    [AuthorizationCheck]
     public class HomeController : BaseController
     {       
         public IActionResult Index()
-        {          
-            var user = HttpContext.Session.Get<AccountViewModel>(HttpContext.Session.Id);
-            System.Console.WriteLine("test");
-
+        {                     
             return View();
         }
 
