@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using RentersLife.Utilities;
 using RentersLife.ViewModels;
 using System.Diagnostics;
 
 namespace RentersLife.Controllers
 {
+    [AuthorizationCheck]
     public class HomeController : BaseController
     {       
         public IActionResult Index()
-        {           
+        {                     
             return View();
         }
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentersLife.Core.Services;
+using RentersLife.Utilities;
 using RentersLife.ViewModels;
 using System;
 
@@ -34,7 +35,8 @@ namespace RentersLife.Controllers
                         return RedirectToAction("Index", "Error", errorViewModel);
                     }
 
-                    // TODO: set up a cache for this info
+                    // set up a cache for user session                  
+                    HttpContext.Session.Set<AccountViewModel>(HttpContext.Session.Id, loggedInAccount);
                 }
                 catch (InvalidOperationException ex)
                 {
