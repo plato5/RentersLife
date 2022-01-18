@@ -2,7 +2,7 @@
 using RentersLife.Core.Models;
 using RentersLife.Core.Models.Types;
 using RentersLife.Core.Repository;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 using System;
 using BC = BCrypt.Net.BCrypt;
 

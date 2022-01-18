@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RentersLife.Core.Services;
 using RentersLife.Utilities;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 using System;
 
 namespace RentersLife.Controllers

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 
 namespace RentersLife.Controllers
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace RentersLife.ViewModels
+namespace RentersLife.Core.ViewModels
 {
     public class ErrorViewModel
     {

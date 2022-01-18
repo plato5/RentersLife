@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RentersLife.Utilities;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 using System.Diagnostics;
 
 namespace RentersLife.Controllers

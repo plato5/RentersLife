@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 using System;
 
 namespace RentersLife.Utilities
