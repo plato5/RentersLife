@@ -11,7 +11,7 @@ namespace RentersLife.Core.ViewModels
         public string MiddleName { get; set; }
         public string LastName { get; set; }
 
-        public AccountType AccounType { get; set; }
+        public AccountType AccountType { get; set; }
 
        // AddressViewModel Address { get; set; }
     }
