@@ -1,4 +1,8 @@
-﻿@using RentersLife.Controllers
+﻿
+@using Microsoft.AspNetCore.Http
+@using RentersLife.Controllers
+@using RentersLife.Utilities
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +12,16 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
+<body>       
+    @{
+        ViewBag.User = LoggedinUser.GetAccount(Context);
+    }
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <img src="images/renters-life.png" width="60" class="img-fluid" alt="logo">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <div class="d-flex">
+                <label>@ViewBag.User.Email</label>
+            </div>         
         </div>
     </nav>
     <section class="vh-100">

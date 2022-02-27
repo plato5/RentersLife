@@ -6,9 +6,13 @@ namespace RentersLife.Utilities
 {
     public class LoggedinUser
     {
-        //public static AccountViewModel GetAccount()
-        //{
-        //    var user = HttpContext.Session.Get<AccountViewModel>(HttpContext.Session.Id);
-        //}
+        public static AccountViewModel GetAccount(HttpContext context)
+        {
+            if (context == null)
+                return null;
+
+            return context.Session.Get<AccountViewModel>(context.Session.Id);   
+            
+        }
     }
 }
