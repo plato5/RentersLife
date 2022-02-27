@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using RentersLife.Core.Models;
-using RentersLife.Core.Models.Types;
 using RentersLife.Core.Repository;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 using System;
 using BC = BCrypt.Net.BCrypt;
 
@@ -33,8 +32,8 @@ namespace RentersLife.Core.Services
             {
                 Account newAccount = _mapper.Map<Account>(registrationView);
                 newAccount.PasswordHash = BC.HashPassword(registrationView.Password);
-
-                newAccount.AccountTypeId = (int)Models.Types.AccountType.Renter;
+                newAccount.AccountTypeId = (int)registrationView.AccountType;
+              
                 var account = _accountRepository.CreateAccount(newAccount);
                 accountView = _mapper.Map<AccountViewModel>(account);
             }

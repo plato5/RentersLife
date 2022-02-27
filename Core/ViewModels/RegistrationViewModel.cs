@@ -1,6 +1,6 @@
 ﻿using RentersLife.Core.Models.Types;
 
-namespace RentersLife.ViewModels
+namespace RentersLife.Core.ViewModels
 {
     public class RegistrationViewModel
     {            
@@ -11,7 +11,7 @@ namespace RentersLife.ViewModels
         public string MiddleName { get; set; }
         public string LastName { get; set; }
 
-        public AccountType AccounType { get; set; }
+        public AccountType AccountType { get; set; }
 
        // AddressViewModel Address { get; set; }
     }

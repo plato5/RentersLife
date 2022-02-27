@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using RentersLife.Core.Models;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 
 namespace RentersLife.Core.MappingConfigurations
 {

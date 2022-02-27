@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using RentersLife.Core.Services;
 using RentersLife.Utilities;
-using RentersLife.ViewModels;
+using RentersLife.Core.ViewModels;
 using System;
 using System.Diagnostics;
 

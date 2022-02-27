@@ -1,4 +1,5 @@
-﻿@model RentersLife.ViewModels.RegistrationViewModel;
+﻿@using RentersLife.Core.Models.Types
+@model RentersLife.Core.ViewModels.RegistrationViewModel;
 
 
 <div class="row d-flex align-items-center justify-content-center h-100">
@@ -37,6 +38,16 @@
                 <input id="LastName" name="LastName" type="text" class="form-control form-control-lg" placeholder="Last Name" asp-for="LastName" />
             </div>
 
+            <div class="form-outline mb-4">
+               <label class="form-label" asp-for="AccountType">Account Type:</label>
+               <select id="AccountType" name="AccountType">
+                   <option value="">None</option>
+                   <option value="@AccountType.Renter">@AccountType.Renter.ToString()</option>
+                   <option value="@AccountType.Manager">@AccountType.Manager.ToString()</option>
+               </select>
+
+            </div>
+
             <div class="d-flex justify-content-around align-items-center mb-4">
                 <a asp-controller="Login" asp-action="Index">Already a member, sign in.</a>
             </div>
@@ -72,6 +83,9 @@
               },
               LastName: {
                   required: true
+              },
+              AccountType: {
+                  required: true
               }
           },
           messages: {
@@ -81,7 +95,8 @@
               },
               Email: "Please enter a valid email address",
               FirstName: "Please provide a first name",
-              LastName: "Please provide a last name"
+              LastName: "Please provide a last name",
+              AccountType: "Please select an account type"
           },
           submitHandler: function (form) {
               form.submit();
