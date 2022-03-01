@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNetCore.Http
+﻿@using Microsoft.AspNetCore.Http
 @using RentersLife.Controllers
 @using RentersLife.Utilities
 
@@ -12,7 +11,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>       
+<body>
     @{
         ViewBag.User = LoggedinUser.GetAccount(Context);
     }
@@ -20,8 +19,33 @@
         <div class="container-fluid">
             <img src="images/renters-life.png" width="60" class="img-fluid" alt="logo">
             <div class="d-flex">
-                <label>@ViewBag.User.Email</label>
-            </div>         
+                <div class="d-flex">
+                    @if (ViewBag.User.AccountTypeId == 2)
+                    {
+                        <div class="p-2">
+                            <a asp-controller="Home" asp-action="Index">Renter Profile</a>
+                        </div>
+                    }
+                    else if (ViewBag.User.AccountTypeId == 3)
+                    {
+                        <div class="p-2">
+                            <a asp-controller="ManagerProfile" asp-action="Index">Manager Profile</a>
+                        </div>
+                    }
+                    else if (ViewBag.User.AccountTypeId == 1)
+                    {
+                        <div class="p-2">
+                            <a asp-controller="Home" asp-action="Index">Renter Profile</a>
+                        </div>
+                        <div class="p-2">
+                            <a asp-controller="ManagerProfile" asp-action="Index">Manager Profile</a>
+                        </div>
+                    }
+                    <div class="p-2">
+                        <label>@ViewBag.User.Email</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
     <section class="vh-100">
