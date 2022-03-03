@@ -7,6 +7,7 @@ namespace RentersLife.Core.Repository.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AccountRepository>().As<IAccountRepository>();
+            builder.RegisterType<ManagerProfileRepository>().As<IManagerProfileRepository>();
         }
     }
 }

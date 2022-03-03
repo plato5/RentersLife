@@ -17,7 +17,7 @@ namespace RentersLife.Core.Models
         public string Telephone { get; set; }
         public string Fax { get; set; }
         public double Price { get; set; }
-        public List<PropertyImage> Images { get; set; }
+      //  public List<PropertyImage> Images { get; set; }
 
     }
 }

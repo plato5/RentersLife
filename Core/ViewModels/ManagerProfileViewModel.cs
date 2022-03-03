@@ -16,10 +16,10 @@
         public string Fax { get; set; }
         public double Price { get; set; }
 
-        public ImageViewModel Image1 { get; set; }
-        public ImageViewModel Image2 { get; set; }
-        public ImageViewModel Image3 { get; set; }
-        public ImageViewModel Image4 { get; set; }
+        //public ImageViewModel Image1 { get; set; }
+        //public ImageViewModel Image2 { get; set; }
+        //public ImageViewModel Image3 { get; set; }
+        //public ImageViewModel Image4 { get; set; }
 
     }
 }

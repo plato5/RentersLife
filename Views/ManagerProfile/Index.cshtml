@@ -12,32 +12,32 @@
 </p>
 @if (Model != null)
 {
-    <table class="table">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.AccountId)
+                   Account
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PropertyName)
+                    Property
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PropertyDescription)
+                    Description
                 </th>           
                 <th>
-                    @Html.DisplayNameFor(model => model.City)
+                   City
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.State)
+                    State
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PostalCode)
+                   Postal Code
                 </th>          
                 <th>
-                    @Html.DisplayNameFor(model => model.Telephone)
+                    Phone
                 </th>           
                 <th>
-                    @Html.DisplayNameFor(model => model.Price)
+                    Price
                 </th>
                 <th></th>
             </tr>
@@ -72,7 +72,7 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |                       
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })                     
                     </td>
                 </tr>
             }

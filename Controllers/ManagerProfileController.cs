@@ -1,14 +1,35 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using RentersLife.Core.Services;
+using RentersLife.Core.ViewModels;
+using RentersLife.Utilities;
+using System.Collections.Generic;
 
 namespace RentersLife.Controllers
 {
-    public class ManagerProfileController : Controller
+    [AuthorizationCheck]
+    public class ManagerProfileController : BaseController
     {
-        // GET: ManagerProfileController
+        private readonly ILogger<LoginController> _logger;
+        private readonly IManagerProfileService _managerProfileService;
+
+        public ManagerProfileController(ILogger<LoginController> logger, IManagerProfileService managerProfileService)
+        {
+            _logger = logger;
+            _managerProfileService = managerProfileService;
+        }
+     
         public ActionResult Index()
         {
-            return View();
+            var user = LoggedinUser.GetAccount(HttpContext);
+            List<ManagerProfileViewModel> managerProfiles = new List<ManagerProfileViewModel>();
+
+            if (user == null)
+                throw new System.Exception("Session is invalid");
+
+            managerProfiles = _managerProfileService.GetManagerProfiles(user.Id);
+            return View(managerProfiles);
         }
 
         // GET: ManagerProfileController/Details/5

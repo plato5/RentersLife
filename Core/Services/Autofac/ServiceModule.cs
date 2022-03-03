@@ -7,6 +7,7 @@ namespace RentersLife.Core.Services.Autofac
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AccountService>().As<IAccountService>();
+            builder.RegisterType<ManagerProfileService>().As<IManagerProfileService>();
         }
     }
 }
