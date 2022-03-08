@@ -35,6 +35,7 @@ namespace RentersLife.Controllers
 
         public IActionResult Details(int id)
         {
+            // TODO: Get ManagerProfile by id
             return View();
         }
 
@@ -46,14 +47,8 @@ namespace RentersLife.Controllers
 
         public ActionResult Edit(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: Get ManagerProfile by id
+            return View();
         }
 
         public IActionResult Save(ManagerProfileViewModel profile)
