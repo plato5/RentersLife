@@ -8,6 +8,7 @@ namespace RentersLife.Core.MappingConfigurations
         public ManagerProfile()
         {
             CreateMap<RentersLife.Core.Models.ManagerProfile, ManagerProfileViewModel>();
+            CreateMap<ManagerProfileViewModel, RentersLife.Core.Models.ManagerProfile>();
         }
     }
 }
