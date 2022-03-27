@@ -11,6 +11,8 @@ namespace RentersLife.Core.Services
     {
         List<ManagerProfileViewModel> GetManagerProfiles(int accountId);
         ManagerProfileViewModel GetManagerProfile(int accountId, int profileId);
+        void CreateManagerProfile(int accountId, ManagerProfileViewModel profile);
+        void EditManagerProfile(int accountId, ManagerProfileViewModel profile);
     }
 
     public class ManagerProfileService : IManagerProfileService
@@ -22,6 +24,41 @@ namespace RentersLife.Core.Services
         {
             _mapper = mapper;
             _managerProfileRepository = managerProfileRepository;
+        }
+
+        public void CreateManagerProfile(int accountId, ManagerProfileViewModel profile)
+        {
+            try
+            {
+                var newProfile = _mapper.Map<ManagerProfileViewModel, ManagerProfile>(profile);
+                _managerProfileRepository.CreateManagerProfile(accountId, newProfile);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
+
+        public void EditManagerProfile(int accountId, ManagerProfileViewModel profile)
+        {
+            try
+            {
+                var newProfile = _mapper.Map<ManagerProfileViewModel, ManagerProfile>(profile);
+                _managerProfileRepository.EditManagerProfile(accountId, newProfile);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public ManagerProfileViewModel GetManagerProfile(int accountId, int profileId)

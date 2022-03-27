@@ -13,11 +13,13 @@ namespace RentersLife.Controllers
     {
         private readonly ILogger<LoginController> _logger;
         private readonly IManagerProfileService _managerProfileService;
+        private readonly string _controllerName;
 
         public ManagerProfileController(ILogger<LoginController> logger, IManagerProfileService managerProfileService)
         {
             _logger = logger;
             _managerProfileService = managerProfileService;
+            _controllerName = "ManagerProfile";
         }
 
         public IActionResult Index()
@@ -29,6 +31,12 @@ namespace RentersLife.Controllers
                 throw new System.Exception("Session is invalid");
 
             managerProfiles = _managerProfileService.GetManagerProfiles(user.Id);
+            if (managerProfiles == null || managerProfiles.Count <= 0)
+            {
+                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
+                return RedirectToAction("Index", "Error", errorViewModel);
+            }
+
             return View(managerProfiles);
         }
 
@@ -42,6 +50,11 @@ namespace RentersLife.Controllers
                 throw new System.Exception("Session is invalid");
 
             managerProfile = _managerProfileService.GetManagerProfile(user.Id, id);
+            if (managerProfile == null)
+            {
+                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
+                return RedirectToAction("Index", "Error", errorViewModel);
+            }
 
             return View(managerProfile);
         }
@@ -54,20 +67,49 @@ namespace RentersLife.Controllers
 
         public ActionResult Edit(int id)
         {
-            // TODO: Get ManagerProfile by id
-            return View();
+            var user = LoggedinUser.GetAccount(HttpContext);
+            ManagerProfileViewModel managerProfile = new ManagerProfileViewModel();
+
+            if (user == null)
+                throw new System.Exception("Session is invalid");
+
+            managerProfile = _managerProfileService.GetManagerProfile(user.Id, id);
+            if (managerProfile == null)
+            {
+                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
+                return RedirectToAction("Index", "Error", errorViewModel);
+            }
+
+            return View(managerProfile);
         }
 
         public IActionResult Save(ManagerProfileViewModel profile)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var user = LoggedinUser.GetAccount(HttpContext);
+                ManagerProfileViewModel managerProfile = new ManagerProfileViewModel();
+
+                if (user == null)
+                    throw new System.Exception("Session is invalid");
+
+                if (profile.Id == 0)
+                {
+                    _managerProfileService.CreateManagerProfile(user.Id, profile);
+                }
+                else
+                {
+                    _managerProfileService.EditManagerProfile(user.Id, profile);
+                }
+             
             }
             catch
             {
-                return View();
+                var errorViewModel = SetErrorMessage("There was a problem creating or updating your profile.", _controllerName);
+                return RedirectToAction("Index", "Error", errorViewModel);
             }
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

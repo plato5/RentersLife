@@ -12,6 +12,8 @@ namespace RentersLife.Core.Repository
     {
         List<ManagerProfile> GetManagerProfiles(int accountId);
         ManagerProfile GetManagerProfile(int accountId, int profileId);
+        void CreateManagerProfile(int accountId, ManagerProfile profile);
+        void EditManagerProfile(int accountId, ManagerProfile profile);
     }
 
     public class ManagerProfileRepository : IManagerProfileRepository
@@ -59,6 +61,81 @@ namespace RentersLife.Core.Repository
 
 
             return managerProfiles;
+        }
+
+        public void CreateManagerProfile(int accountId, ManagerProfile profile)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
+                {
+                    connection.Open();
+                    connection.Execute(@"INSERT INTO ManagerProfiles (AccountId, PropertyName, PropertyDescription, Line1, Line2, City, State, PostalCode, Country, Telephone, Fax, Price, Bedrooms, Bathrooms)
+                        VALUES(@AccountId, @PropertyName, @PropertyDescription, @Line1, @Line2, @City, 
+                                @State, @State, @PostalCode, @Country, @Telephone, @Fax, @Price, @Bedrooms, @Bathrooms)",
+                            new
+                            {
+                                AccountId = profile.AccountId,
+                                PropertyName = profile.PropertyName,
+                                PropertyDescription = profile.PropertyDescription,
+                                Line1 = profile.Line1,
+                                Line2 = profile.Line2,
+                                City = profile.City,
+                                State = profile.State,
+                                PostalCode = profile.PostalCode,
+                                Country = profile.Country,
+                                Telephone = profile.Telephone,
+                                Fax = profile.Fax,
+                                Price = profile.Price,
+                                Bedrooms = profile.Bedrooms,
+                                Bathrooms = profile.Bathrooms
+                            });
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
+        }
+
+        public void EditManagerProfile(int accountId, ManagerProfile profile)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
+                {
+                    connection.Open();
+                    connection.Execute(@"UPDATE ManagerProfiles
+                        SET AccountId = @AccountId, PropertyName = @PropertyName, 
+                                        PropertyDescription = @PropertyDescription, Line1 = @Line1, Line2 = @Line2, 
+                                        Ciry = @City, State = @State, @State, PostalCode = @PostalCode, 
+                                        Country = @Country, Telephone = @Telephone, Fax = @Fax, Price = @Price, 
+                                        Bedrooms = @Bedrooms, Bathrooms = @Bathrooms
+                                        WHERE AccountId = @AccountId AND Id = @Id",
+                            new
+                            {
+                                Id = profile.Id,
+                                AccountId = profile.AccountId,
+                                PropertyName = profile.PropertyName,
+                                PropertyDescription = profile.PropertyDescription,
+                                Line1 = profile.Line1,
+                                Line2 = profile.Line2,
+                                City = profile.City,
+                                State = profile.State,
+                                PostalCode = profile.PostalCode,
+                                Country = profile.Country,
+                                Telephone = profile.Telephone,
+                                Fax = profile.Fax,
+                                Price = profile.Price,
+                                Bedrooms = profile.Bedrooms,
+                                Bathrooms = profile.Bathrooms
+                            });
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
         }
     }
 }

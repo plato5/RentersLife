@@ -16,9 +16,7 @@ namespace RentersLife.Core.Repository
     public class AccountRepository : IAccountRepository
     {
         public Account CreateAccount(Account account)
-        {
-            Account newAccount = new Account();
-
+        {           
             try
             {
                 using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
