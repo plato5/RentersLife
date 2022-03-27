@@ -13,12 +13,10 @@
     <div class="col-md-4">
         <form action="Save" name="managerProfileForm">
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
+               @Html.HiddenFor(model => model.Id)
             </div>
             <div class="form-group">
-                <label asp-for="AccountId" class="control-label"></label>
-                <input asp-for="AccountId" class="form-control" />
+               @Html.HiddenFor(model => model.AccountId)
             </div>
             <div class="form-group">
                 <label asp-for="PropertyName" class="control-label"></label>
@@ -80,3 +78,43 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
+@section scripts {
+<script>
+
+    $(document).ready(function() {
+      $("form[name='managerProfileForm']").validate({
+          rules: {
+              PropertyName: {
+                  required: true                 
+              },
+              PropertyDescription: {
+                  required: true                
+              },
+              Price: {
+                  required: true            
+              },
+              Bedrooms: {
+                  required: true
+              },
+              Bathrooms: {
+                  required: true
+              }
+          },
+          messages: {             
+              PropertyName: "Please provide a property name",
+              PropertyDescription: "Please provide a description",
+              Bedrooms: "Please provide a bedroom count",
+              Bathrooms: "Please provide a bathroom count"
+          },
+          submitHandler: function (form) {
+              form.submit();
+          }
+
+      });
+
+    });
+
+</script>
+}

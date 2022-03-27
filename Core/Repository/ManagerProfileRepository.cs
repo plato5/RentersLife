@@ -71,8 +71,7 @@ namespace RentersLife.Core.Repository
                 {
                     connection.Open();
                     connection.Execute(@"INSERT INTO ManagerProfiles (AccountId, PropertyName, PropertyDescription, Line1, Line2, City, State, PostalCode, Country, Telephone, Fax, Price, Bedrooms, Bathrooms)
-                        VALUES(@AccountId, @PropertyName, @PropertyDescription, @Line1, @Line2, @City, 
-                                @State, @State, @PostalCode, @Country, @Telephone, @Fax, @Price, @Bedrooms, @Bathrooms)",
+                        VALUES(@AccountId, @PropertyName, @PropertyDescription, @Line1, @Line2, @City, @State, @PostalCode, @Country, @Telephone, @Fax, @Price, @Bedrooms, @Bathrooms)",
                             new
                             {
                                 AccountId = profile.AccountId,

@@ -95,6 +95,7 @@ namespace RentersLife.Controllers
 
                 if (profile.Id == 0)
                 {
+                    profile.AccountId = user.Id;
                     _managerProfileService.CreateManagerProfile(user.Id, profile);
                 }
                 else
