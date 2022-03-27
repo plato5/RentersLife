@@ -9,10 +9,12 @@ namespace RentersLife.Controllers
         {            
             ErrorViewModel errorViewModel = new ErrorViewModel();
 
-            if (controllerName.Equals("Register"))
+            if (!string.IsNullOrWhiteSpace(controllerName) && controllerName.Equals("Register"))
                 errorViewModel.RegistationErrorMessage = message;
-            else
+            else if (!string.IsNullOrWhiteSpace(controllerName) && controllerName.Equals("Login"))
                 errorViewModel.LoginErrorMessage = message;
+            else
+                errorViewModel.ApplicationErrorMessage = message;
 
             return errorViewModel;
         }

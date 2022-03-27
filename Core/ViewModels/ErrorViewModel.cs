@@ -10,5 +10,6 @@ namespace RentersLife.Core.ViewModels
 
         public string LoginErrorMessage { get; set; }
         public string RegistationErrorMessage { get; set; }
+        public string ApplicationErrorMessage { get; set; }
     }
 }
