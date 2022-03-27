@@ -35,8 +35,15 @@ namespace RentersLife.Controllers
 
         public IActionResult Details(int id)
         {
-            // TODO: Get ManagerProfile by id
-            return View();
+            var user = LoggedinUser.GetAccount(HttpContext);
+            ManagerProfileViewModel managerProfile = new ManagerProfileViewModel();
+
+            if (user == null)
+                throw new System.Exception("Session is invalid");
+
+            managerProfile = _managerProfileService.GetManagerProfile(user.Id, id);
+
+            return View(managerProfile);
         }
 
 
