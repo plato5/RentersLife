@@ -87,8 +87,7 @@ namespace RentersLife.Controllers
         {
             try
             {
-                var user = LoggedinUser.GetAccount(HttpContext);
-                ManagerProfileViewModel managerProfile = new ManagerProfileViewModel();
+                var user = LoggedinUser.GetAccount(HttpContext);               
 
                 if (user == null)
                     throw new System.Exception("Session is invalid");

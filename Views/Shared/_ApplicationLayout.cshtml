@@ -23,7 +23,7 @@
                     @if (ViewBag.User.AccountTypeId == 2)
                     {
                         <div class="p-2">
-                            <a asp-controller="Home" asp-action="Index">Renter Profile</a>
+                            <a asp-controller="RenterProfile" asp-action="Index">Renter Profile</a>
                         </div>
                     }
                     else if (ViewBag.User.AccountTypeId == 3)
@@ -35,7 +35,7 @@
                     else if (ViewBag.User.AccountTypeId == 1)
                     {
                         <div class="p-2">
-                            <a asp-controller="Home" asp-action="Index">Renter Profile</a>
+                            <a asp-controller="RenterProfile" asp-action="Index">Renter Profile</a>
                         </div>
                         <div class="p-2">
                             <a asp-controller="ManagerProfile" asp-action="Index">Manager Profile</a>

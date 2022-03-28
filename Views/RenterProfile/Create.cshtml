@@ -1,0 +1,212 @@
+﻿@model RentersLife.Core.ViewModels.RenterProfileViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Renter ProfileV</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save" name="renterProfileForm">           
+            <div class="form-group">
+                 @Html.HiddenFor(model => model.Id)           
+            </div>
+            <div class="form-group">
+                 @Html.HiddenFor(model => model.AccountId)            
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">First</label>
+                <input asp-for="FirstName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Middle</label>
+                <input asp-for="MiddleName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Last</label>
+                <input asp-for="LastName" class="form-control" />                
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Date of Birth</label>
+                <input asp-for="DateOfBirth" class="form-control" />                
+            </div>
+            <div class="form-group">
+                <label asp-for="SSN" class="control-label"></label>
+                <input asp-for="SSN" class="form-control" />               
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasBeenEvicted" /> Been Evicted?
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CommitedFelony" /> Committed a Felony?
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PerformBackgroundCheck" /> Submit to background check?
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ProvideIdentity" /> Will provide proof of identity?
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ProvideProofOfIncome" /> Will provide proof of income?
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Gross Income</label>
+                <input asp-for="GrossIncome" class="form-control" />               
+            </div>
+
+            <!-- former residence-->
+            <div class="form-group">
+                <label class="control-label">Rental Name</label>
+                <input asp-for="CompanyName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Rental Email</label>
+                <input asp-for="CompanyEmail" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Rental Phone</label>
+                <input asp-for="CompanyPhone" class="form-control" />              
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CanContact" /> Can contact?
+                </label>
+            </div>
+
+            <!--Secondary Renter-->
+            <div class="form-group">
+                <label class="control-label">Relationship to renter</label>
+                <input asp-for="RelationshipToRenter" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input asp-for="SecondaryEmail" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Phone</label>
+                <input asp-for="SecondaryPhone" class="form-control" />              
+            </div>
+
+            <!--Pet Info-->
+            <div class="form-group">
+                <label class="control-label">Pet Name</label>
+                <input asp-for="PetName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Age</label>
+                <input asp-for="PetAge" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label class="control-label">Breed</label>
+                <input asp-for="PetBreed" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Line1" class="control-label"></label>
+                <input asp-for="Line1" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Line2" class="control-label"></label>
+                <input asp-for="Line2" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Fax" class="control-label"></label>
+                <input asp-for="Fax" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />               
+            </div>
+            <div class="form-group">               
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@*
+@section scripts {
+<script>
+
+    $(document).ready(function() {
+      $("form[name='managerProfileForm']").validate({
+          rules: {
+              PropertyName: {
+                  required: true                 
+              },
+              PropertyDescription: {
+                  required: true                
+              },
+              Price: {
+                  required: true            
+              },
+              Bedrooms: {
+                  required: true
+              },
+              Bathrooms: {
+                  required: true
+              }
+          },
+          messages: {             
+              PropertyName: "Please provide a property name",
+              PropertyDescription: "Please provide a description",
+              Bedrooms: "Please provide a bedroom count",
+              Bathrooms: "Please provide a bathroom count"
+          },
+          submitHandler: function (form) {
+              form.submit();
+          }
+
+      });
+
+    });
+
+</script>
+}
+*@
