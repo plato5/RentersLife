@@ -8,6 +8,7 @@ namespace RentersLife.Core.Services.Autofac
         {
             builder.RegisterType<AccountService>().As<IAccountService>();
             builder.RegisterType<ManagerProfileService>().As<IManagerProfileService>();
+            builder.RegisterType<RenterProfileService>().As<IRenterProfileService>();
         }
     }
 }

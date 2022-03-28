@@ -8,6 +8,7 @@ namespace RentersLife.Core.Repository.Autofac
         {
             builder.RegisterType<AccountRepository>().As<IAccountRepository>();
             builder.RegisterType<ManagerProfileRepository>().As<IManagerProfileRepository>();
+            builder.RegisterType<RenterProfileRepository>().As<IRenterProfileRepository>();
         }
     }
 }
