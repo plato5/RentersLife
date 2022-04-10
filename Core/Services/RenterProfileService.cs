@@ -47,12 +47,41 @@ namespace RentersLife.Core.Services
 
         public void EditRenterProfile(int accountId, RenterProfileViewModel profile)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var newProfile = _mapper.Map<RenterProfileViewModel, RenterProfile>(profile);
+                _renterProfileRepository.EditRenterProfile(accountId, newProfile);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
         public RenterProfileViewModel GetRenterProfile(int accountId, int profileId)
         {
-            throw new System.NotImplementedException();
+            RenterProfileViewModel renterProfile = new RenterProfileViewModel();
+
+            try
+            {
+                var profile = _renterProfileRepository.GetRenterProfile(accountId, profileId);
+                renterProfile = _mapper.Map<RenterProfile, RenterProfileViewModel>(profile);
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return renterProfile;
         }
 
         public List<RenterProfileViewModel> GetRenterProfiles(int accountId)

@@ -39,6 +39,24 @@ namespace RentersLife.Controllers
             return View();
         }
 
+        public ActionResult Edit(int id)
+        {
+            var user = LoggedinUser.GetAccount(HttpContext);
+            RenterProfileViewModel renterProfile = new RenterProfileViewModel();
+
+            if (user == null)
+                throw new System.Exception("Session is invalid");
+
+            renterProfile = _renterProfileService.GetRenterProfile(user.Id, id);
+            if (renterProfile == null)
+            {
+                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
+                return RedirectToAction("Index", "Error", errorViewModel);
+            }
+
+            return View(renterProfile);
+        }
+
         public IActionResult Save(RenterProfileViewModel profile)
         {
             try
@@ -55,7 +73,7 @@ namespace RentersLife.Controllers
                 }
                 else
                 {
-                  //  _managerProfileService.EditManagerProfile(user.Id, profile);
+                    _renterProfileService.EditRenterProfile(user.Id, profile);
                 }
 
             }

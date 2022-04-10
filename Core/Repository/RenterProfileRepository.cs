@@ -82,7 +82,65 @@ namespace RentersLife.Core.Repository
 
         public void EditRenterProfile(int accountId, RenterProfile profile)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (var connection = new SqlConnection(DBConnection.Instance.GetConnectionString()))
+                {
+                    connection.Open();
+                    connection.Execute(@"UPDATE RenterProfile SET Email = @Email, FirstName = @FirstName, MiddleName = @MiddleName, LastName = @LastName, 
+                                                Phone = @Phone, DateOfBirth = @DateOfBirth, SSN = @SSN, HasBeenEvicted = @HasBeenEvicted, 
+                                                CommitedFelony = @CommitedFelony, PerformBackgroundCheck = @PerformBackgroundCheck, 
+                                                ProvideIdentity = @ProvideIdentity, ProvideProofOfIncome = @ProvideProofOfIncome, 
+                                                GrossIncome = @GrossIncome, CompanyName = @CompanyName, CompanyEmail = @CompanyEmail, 
+                                                CompanyPhone = @CompanyPhone, CanContact = @CanContact, RelationshipToRenter = @RelationshipToRenter, 
+                                                SecondaryEmail = @SecondaryEmail, SecondaryPhone = @SecondaryPhone, PetName = @PetName, 
+                                                PetAge = @PetAge, PetBreed = @PetBreed, Line1 = @Line1, Line2 = @Line2, City = @City, 
+                                                State = @State, PostalCode = @PostalCode, Country = @Country, Telephone = @Telephone, 
+                                                Fax = @Fax, Comment = @Comment
+                                                WHERE AccountId = @AccountId AND Id = @Id",
+                            new
+                            {         
+                                Id = profile.Id,
+                                AccountId = profile.AccountId,
+                                Email = profile.Email,
+                                FirstName = profile.FirstName,
+                                MiddleName = profile.MiddleName,
+                                LastName = profile.LastName,
+                                Phone = profile.Phone,
+                                DateOfBirth = profile.DateOfBirth,
+                                SSN = profile.SSN,
+                                HasBeenEvicted = profile.HasBeenEvicted,
+                                CommitedFelony = profile.CommitedFelony,
+                                PerformBackgroundCheck = profile.PerformBackgroundCheck,
+                                ProvideIdentity = profile.ProvideIdentity,
+                                ProvideProofOfIncome = profile.ProvideProofOfIncome,
+                                GrossIncome = profile.GrossIncome,
+                                CompanyName = profile.CompanyName,
+                                CompanyEmail = profile.CompanyEmail,
+                                CompanyPhone = profile.CompanyPhone,
+                                CanContact = profile.CanContact,
+                                RelationshipToRenter = profile.RelationshipToRenter,
+                                SecondaryEmail = profile.SecondaryEmail,
+                                SecondaryPhone = profile.SecondaryPhone,
+                                PetName = profile.PetName,
+                                PetAge = profile.PetAge,
+                                PetBreed = profile.PetBreed,
+                                Line1 = profile.Line1,
+                                Line2 = profile.Line2,
+                                City = profile.City,
+                                State = profile.State,
+                                PostalCode = profile.PostalCode,
+                                Country = profile.Country,
+                                Telephone = profile.Telephone,
+                                Fax = profile.Fax,
+                                Comment = profile.Comment
+                            });
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new InvalidOperationException(ex.Message);
+            }
         }
 
         public List<RenterProfile> GetRenterProfiles(int accountId)
