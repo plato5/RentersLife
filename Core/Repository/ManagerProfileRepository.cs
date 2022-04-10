@@ -105,14 +105,14 @@ namespace RentersLife.Core.Repository
                 {
                     connection.Open();
                     connection.Execute(@"UPDATE ManagerProfiles
-                                        SET AccountId = @AccountId, PropertyName = @PropertyName, 
+                                        SET PropertyName = @PropertyName, 
                                         PropertyDescription = @PropertyDescription, Line1 = @Line1, Line2 = @Line2, 
                                         City = @City, State = @State, PostalCode = @PostalCode, 
                                         Country = @Country, Telephone = @Telephone, Fax = @Fax, Price = @Price, 
                                         Bedrooms = @Bedrooms, Bathrooms = @Bathrooms
                                         WHERE AccountId = @AccountId AND Id = @Id",
                             new
-                            {
+                            {         
                                 Id = profile.Id,
                                 AccountId = profile.AccountId,
                                 PropertyName = profile.PropertyName,

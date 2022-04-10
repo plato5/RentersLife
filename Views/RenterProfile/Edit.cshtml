@@ -1,0 +1,225 @@
+﻿@model RentersLife.Core.ViewModels.RenterProfileViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_ApplicationLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Renter Profile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Save" name="renterProfileForm">            
+            <div class="form-group">
+                 @Html.HiddenFor(model => model.Id)           
+            </div>
+            <div class="form-group">
+                 @Html.HiddenFor(model => model.AccountId)            
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="SSN" class="control-label"></label>
+                <input asp-for="SSN" class="form-control" />              
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HasBeenEvicted" /> @Html.DisplayNameFor(model => model.HasBeenEvicted)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CommitedFelony" /> @Html.DisplayNameFor(model => model.CommitedFelony)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="PerformBackgroundCheck" /> @Html.DisplayNameFor(model => model.PerformBackgroundCheck)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ProvideIdentity" /> @Html.DisplayNameFor(model => model.ProvideIdentity)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ProvideProofOfIncome" /> @Html.DisplayNameFor(model => model.ProvideProofOfIncome)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="GrossIncome" class="control-label"></label>
+                <input asp-for="GrossIncome" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyEmail" class="control-label"></label>
+                <input asp-for="CompanyEmail" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyPhone" class="control-label"></label>
+                <input asp-for="CompanyPhone" class="form-control" />               
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CanContact" /> @Html.DisplayNameFor(model => model.CanContact)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="RelationshipToRenter" class="control-label"></label>
+                <input asp-for="RelationshipToRenter" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondaryEmail" class="control-label"></label>
+                <input asp-for="SecondaryEmail" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondaryPhone" class="control-label"></label>
+                <input asp-for="SecondaryPhone" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="PetName" class="control-label"></label>
+                <input asp-for="PetName" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="PetAge" class="control-label"></label>
+                <input asp-for="PetAge" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="PetBreed" class="control-label"></label>
+                <input asp-for="PetBreed" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Line1" class="control-label"></label>
+                <input asp-for="Line1" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Line2" class="control-label"></label>
+                <input asp-for="Line2" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />              
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Fax" class="control-label"></label>
+                <input asp-for="Fax" class="form-control" />               
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />               
+            </div>
+             <div class="form-group">               
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section scripts {
+<script>
+
+    $(document).ready(function() {
+      $("form[name='renterProfileForm']").validate({
+          rules: {
+              Email: {
+                  required: true                 
+              },
+              FirstName: {
+                  required: true                
+              },
+              LastName: {
+                  required: true            
+              },
+              Phone: {
+                  required: true
+              },
+              DateOfBirth: {
+                  required: true
+              },
+              SSN: {
+                  required: true;
+              },
+              GrossIncome: {
+                  required: true;
+              },
+              CompanyName: {
+                  required: true;
+              },
+              CompanyEmail: {
+                  required: true;
+              },
+              CompanyPhone: {
+                  required: true;
+              }
+          },
+          messages: {             
+              Email: "Please provide an email address",
+              FirstName: "Please provide a first name",
+              LastName: "Please provide a last name",
+              Phone: "Please provide a phone number",
+              DateOfBirth: "Please provide a date of birth",
+              SSN: "Please provide a social security number",
+              GrossIncome: "Please provide a gross income amount",
+              CompanyName: "Please provide a management company name",
+              CompanyEmail: "Please provide a management company email address",
+              CompanyPhone: "Please provide a management company phone number"
+          },
+          submitHandler: function (form) {
+              form.submit();
+          }
+
+      });
+
+    });
+
+</script>
+}

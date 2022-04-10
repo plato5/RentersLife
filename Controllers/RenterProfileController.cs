@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RentersLife.Core.Services;
 using RentersLife.Core.ViewModels;
@@ -9,56 +8,31 @@ using System.Collections.Generic;
 namespace RentersLife.Controllers
 {
     [AuthorizationCheck]
-    public class ManagerProfileController : BaseController
+    public class RenterProfileController : BaseController
     {
-        private readonly ILogger<LoginController> _logger;
-        private readonly IManagerProfileService _managerProfileService;
+        private readonly ILogger<RenterProfileController> _logger;
+        private readonly IRenterProfileService _renterProfileService;
         private readonly string _controllerName;
 
-        public ManagerProfileController(ILogger<LoginController> logger, IManagerProfileService managerProfileService)
+        public RenterProfileController(ILogger<RenterProfileController> logger, IRenterProfileService renterProfileService)
         {
             _logger = logger;
-            _managerProfileService = managerProfileService;
-            _controllerName = "ManagerProfile";
+            _renterProfileService = renterProfileService;
+            _controllerName = "RenterProfile";
         }
 
         public IActionResult Index()
         {
             var user = LoggedinUser.GetAccount(HttpContext);
-            List<ManagerProfileViewModel> managerProfiles = new List<ManagerProfileViewModel>();
+            List<RenterProfileViewModel> renterProfiles = new List<RenterProfileViewModel>();
 
             if (user == null)
                 throw new System.Exception("Session is invalid");
 
-            managerProfiles = _managerProfileService.GetManagerProfiles(user.Id);
-            if (managerProfiles == null || managerProfiles.Count <= 0)
-            {
-                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
-                return RedirectToAction("Index", "Error", errorViewModel);
-            }
+            renterProfiles = _renterProfileService.GetRenterProfiles(user.Id);          
 
-            return View(managerProfiles);
+            return View(renterProfiles);
         }
-
-
-        public IActionResult Details(int id)
-        {
-            var user = LoggedinUser.GetAccount(HttpContext);
-            ManagerProfileViewModel managerProfile = new ManagerProfileViewModel();
-
-            if (user == null)
-                throw new System.Exception("Session is invalid");
-
-            managerProfile = _managerProfileService.GetManagerProfile(user.Id, id);
-            if (managerProfile == null)
-            {
-                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
-                return RedirectToAction("Index", "Error", errorViewModel);
-            }
-
-            return View(managerProfile);
-        }
-
 
         public IActionResult Create()
         {
@@ -68,22 +42,42 @@ namespace RentersLife.Controllers
         public ActionResult Edit(int id)
         {
             var user = LoggedinUser.GetAccount(HttpContext);
-            ManagerProfileViewModel managerProfile = new ManagerProfileViewModel();
+            RenterProfileViewModel renterProfile = new RenterProfileViewModel();
 
             if (user == null)
                 throw new System.Exception("Session is invalid");
 
-            managerProfile = _managerProfileService.GetManagerProfile(user.Id, id);
-            if (managerProfile == null)
+            renterProfile = _renterProfileService.GetRenterProfile(user.Id, id);
+            if (renterProfile == null)
             {
                 var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
                 return RedirectToAction("Index", "Error", errorViewModel);
             }
 
-            return View(managerProfile);
+            return View(renterProfile);
         }
 
-        public IActionResult Save(ManagerProfileViewModel profile)
+
+        public IActionResult Details(int id)
+        {
+            var user = LoggedinUser.GetAccount(HttpContext);
+            RenterProfileViewModel renterProfile = new RenterProfileViewModel();
+
+            if (user == null)
+                throw new System.Exception("Session is invalid");
+
+            renterProfile = _renterProfileService.GetRenterProfile(user.Id, id);
+            if (renterProfile == null)
+            {
+                var errorViewModel = SetErrorMessage("There was a problem fetching your profile.", _controllerName);
+                return RedirectToAction("Index", "Error", errorViewModel);
+            }
+
+            return View(renterProfile);
+        }
+
+
+        public IActionResult Save(RenterProfileViewModel profile)
         {
             try
             {
@@ -95,13 +89,13 @@ namespace RentersLife.Controllers
                 if (profile.Id == 0)
                 {
                     profile.AccountId = user.Id;
-                    _managerProfileService.CreateManagerProfile(user.Id, profile);
+                    _renterProfileService.CreateRenterProfile(user.Id, profile);
                 }
                 else
                 {
-                    _managerProfileService.EditManagerProfile(user.Id, profile);
+                    _renterProfileService.EditRenterProfile(user.Id, profile);
                 }
-             
+
             }
             catch
             {
@@ -111,6 +105,5 @@ namespace RentersLife.Controllers
 
             return RedirectToAction(nameof(Index));
         }
-
     }
 }
