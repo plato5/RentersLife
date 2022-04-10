@@ -10,11 +10,11 @@ namespace RentersLife.Controllers
     [AuthorizationCheck]
     public class RenterProfileController : BaseController
     {
-        private readonly ILogger<LoginController> _logger;
+        private readonly ILogger<RenterProfileController> _logger;
         private readonly IRenterProfileService _renterProfileService;
         private readonly string _controllerName;
 
-        public RenterProfileController(ILogger<LoginController> logger, IRenterProfileService renterProfileService)
+        public RenterProfileController(ILogger<RenterProfileController> logger, IRenterProfileService renterProfileService)
         {
             _logger = logger;
             _renterProfileService = renterProfileService;

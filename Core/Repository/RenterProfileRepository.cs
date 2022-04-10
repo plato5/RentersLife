@@ -32,7 +32,7 @@ namespace RentersLife.Core.Repository
                                                                     ProvideProofOfIncome, GrossIncome, CompanyName, CompanyEmail, CompanyPhone, 
                                                                     CanContact, RelationshipToRenter, SecondaryEmail, SecondaryPhone, PetName, 
                                                                     PetAge, PetBreed, Line1, Line2, City, State, PostalCode, Country, Telephone, Fax, Comment)
-                        VALUES(INSERT INTO RenterProfile (@AccountId, @Email, @FirstName, @MiddleName, @LastName, @Phone, @DateOfBirth, @SSN, @HasBeenEvicted, 
+                        VALUES(@AccountId, @Email, @FirstName, @MiddleName, @LastName, @Phone, @DateOfBirth, @SSN, @HasBeenEvicted, 
                                         @CommitedFelony, @PerformBackgroundCheck, @ProvideIdentity, @ProvideProofOfIncome, @GrossIncome, @CompanyName, 
                                         @CompanyEmail, @CompanyPhone, @CanContact, @RelationshipToRenter, @SecondaryEmail, @SecondaryPhone, @PetName, 
                                         @PetAge, @PetBreed, @Line1, @Line2, @City, @State, @PostalCode, @Country, @Telephone, @Fax, @Comment)",
@@ -47,7 +47,7 @@ namespace RentersLife.Core.Repository
                                 DateOfBirth = profile.DateOfBirth,
                                 SSN = profile.SSN,
                                 HasBeenEvicted = profile.HasBeenEvicted,
-                                ComitedFelony = profile.CommitedFelony,
+                                CommitedFelony = profile.CommitedFelony,
                                 PerformBackgroundCheck = profile.PerformBackgroundCheck,
                                 ProvideIdentity = profile.ProvideIdentity,
                                 ProvideProofOfIncome = profile.ProvideProofOfIncome,

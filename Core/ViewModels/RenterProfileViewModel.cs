@@ -11,7 +11,7 @@ namespace RentersLife.Core.ViewModels
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
         public string SSN { get; set; }
         public bool HasBeenEvicted { get; set; }
         public bool CommitedFelony { get; set; }
