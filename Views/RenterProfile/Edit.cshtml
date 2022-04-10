@@ -164,34 +164,54 @@
 </div>
 
 
-@*
 @section scripts {
 <script>
 
     $(document).ready(function() {
-      $("form[name='managerProfileForm']").validate({
+      $("form[name='renterProfileForm']").validate({
           rules: {
-              PropertyName: {
+              Email: {
                   required: true                 
               },
-              PropertyDescription: {
+              FirstName: {
                   required: true                
               },
-              Price: {
+              LastName: {
                   required: true            
               },
-              Bedrooms: {
+              Phone: {
                   required: true
               },
-              Bathrooms: {
+              DateOfBirth: {
                   required: true
+              },
+              SSN: {
+                  required: true;
+              },
+              GrossIncome: {
+                  required: true;
+              },
+              CompanyName: {
+                  required: true;
+              },
+              CompanyEmail: {
+                  required: true;
+              },
+              CompanyPhone: {
+                  required: true;
               }
           },
           messages: {             
-              PropertyName: "Please provide a property name",
-              PropertyDescription: "Please provide a description",
-              Bedrooms: "Please provide a bedroom count",
-              Bathrooms: "Please provide a bathroom count"
+              Email: "Please provide an email address",
+              FirstName: "Please provide a first name",
+              LastName: "Please provide a last name",
+              Phone: "Please provide a phone number",
+              DateOfBirth: "Please provide a date of birth",
+              SSN: "Please provide a social security number",
+              GrossIncome: "Please provide a gross income amount",
+              CompanyName: "Please provide a management company name",
+              CompanyEmail: "Please provide a management company email address",
+              CompanyPhone: "Please provide a management company phone number"
           },
           submitHandler: function (form) {
               form.submit();
@@ -203,4 +223,3 @@
 
 </script>
 }
-*@
