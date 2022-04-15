@@ -24,5 +24,17 @@ namespace RentersLife.Controllers
         {
             return View();
         }
+
+        public IActionResult SearchResult(SearchViewModel searchParams)
+        {
+            if (searchParams == null)
+            {
+                return BadRequest(Json("No Data"));
+            }
+
+            var result = "TEST";
+
+            return Json(new { Status = "success", Result = result });          
+        }
     }
 }
