@@ -1,4 +1,18 @@
-﻿
+﻿@using RentersLife.Utilities
+
+@{
+    ViewBag.User = LoggedinUser.GetAccount(Context);
+}
+
+<div>
+    @if (ViewBag.User.AccountTypeId == 2 || ViewBag.User.AccountTypeId == 1)
+    {
+        <h4>Search for Apartments</h4>
+        <div><a asp-controller="Home" asp-action="Search"><input class="btn btn-primary btn-outline-light" value="Search"></a></div>
+
+    }
+</div>
+
 <div class="row d-flex align-items-center justify-content-center h-100">
     <div class="col-md-8 col-lg-7 col-xl-6">
         <img src="images/renters-life.png" class="img-fluid" alt="logo">
